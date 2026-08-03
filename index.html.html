@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prem Kumar Nageshwar — Software Engineer & Data Analyst</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #09090b;
+            --bg-secondary: #18181b;
+            --bg-card: #27272a;
+            --text-primary: #f4f4f5;
+            --text-secondary: #a1a1aa;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.15);
+            --border: #27272a;
+            --border-hover: #3f3f46;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        :root.light {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f4f4f5;
+            --bg-card: #ffffff;
+            --text-primary: #09090b;
+            --text-secondary: #71717a;
+            --accent: #2563eb;
+            --accent-glow: rgba(37, 99, 235, 0.1);
+            --border: #e4e4e7;
+            --border-hover: #d4d4d8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            background: rgba(9, 9, 11, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .light header {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .theme-toggle {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            padding: 0.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-card);
+        }
+
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 8rem 2rem 5rem 2rem;
+        }
+
+        .hero {
+            padding: 4rem 0 6rem 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-image-container {
+            flex-shrink: 0;
+        }
+
+        .profile-photo {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--border);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--accent-glow);
+            color: var(--accent);
+            padding: 0.35rem 0.85rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.2rem, 4vw, 3.2rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero h2 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--accent);
+            margin-bottom: 1.25rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--text-primary);
+            color: var(--bg-primary);
+            border: 1px solid var(--text-primary);
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-secondary);
+            border-color: var(--border-hover);
+        }
+
+        section {
+            padding: 5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        section h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 2.5rem;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            border-radius: 12px;
+            transition: var(--transition);
+        }
+
+        .skill-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+        }
+
+        .skill-card h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 1.5rem;
+            border-left: 2px solid var(--border);
+        }
+
+        .timeline-item h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .company-role {
+            font-size: 0.95rem;
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .duration {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            display: inline-block;
+            background: var(--bg-secondary);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+        }
+
+        .timeline-item ul {
+            list-style-type: disc;
+            padding-left: 1.2rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+        }
+
+        .project-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .project-card p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .edu-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+
+        .edu-card h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .edu-school {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-content {
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .contact-content h2 {
+            margin-bottom: 1rem;
+        }
+
+        .contact-content p {
+            color: var(--text-secondary);
+            max-width: 500px;
+            margin: 0 auto 2rem auto;
+        }
+
+        footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero { flex-direction: column-reverse; text-align: center; gap: 2rem; }
+            .cta-buttons { justify-content: center; }
+            main { padding: 6rem 1.25rem 3rem 1.25rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">Prem Kumar Nageshwar</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="resume.pdf" target="_blank" class="btn-secondary" style="padding: 0.4rem 0.8rem; border-radius: 6px; font-size: 0.85rem;">Resume</a></li>
+                <li>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">
+                        <svg id="themeIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" id="about" style="border-top: none;">
+            <div class="hero-content">
+                <div class="badge">
+                    <span style="width: 6px; height: 6px; background: var(--accent); border-radius: 50%;"></span>
+                    Available for Full-Time Roles
+                </div>
+                <h1>Prem Kumar Nageshwar</h1>
+                <h2>Software Engineer & Data Analyst</h2>
+                <p>Motivated Technology and Data Analytics enthusiast with a strong foundation in computer applications and cloud tools, seeking opportunities in software development and data analysis roles to drive impactful digital solutions.</p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn btn-primary">Get in Touch</a>
+                    <a href="resume.pdf" target="_blank" class="btn btn-secondary">Download Resume</a>
+                    <a href="https://linkedin.com/in/prem-kumar-nageshwar-bab365303" target="_blank" class="btn btn-secondary">LinkedIn Profile</a>
+                </div>
+            </div>
+            <div class="hero-image-container">
+                <img src="Prem Image.jpeg" alt="Prem Kumar Nageshwar" class="profile-photo">
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>Technical Proficiencies</h2>
+            <div class="skills-container">
+                <div class="skill-card">
+                    <h3>Technical Skills</h3>
+                    <div class="tag-list">
+                        <span class="tag">Python</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">SQL</span>
+                        <span class="tag">C++</span>
+                        <span class="tag">Java</span>
+                        <span class="tag">LaTeX</span>
+                        <span class="tag">MySQL</span>
+                        <span class="tag">PHP</span>
+                        <span class="tag">RDBMS</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3>Data & Cloud Tools</h3>
+                    <div class="tag-list">
+                        <span class="tag">Google Cloud</span>
+                        <span class="tag">Google Analytics</span>
+                        <span class="tag">Excel</span>
+                        <span class="tag">TallyPrime</span>
+                        <span class="tag">Firebase</span>
+                        <span class="tag">Git</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3>Certifications & Soft Skills</h3>
+                    <div class="tag-list">
+                        <span class="tag">AI in Digital Marketing</span>
+                        <span class="tag">Cloud Arcade Facilitator</span>
+                        <span class="tag">Problem Solving</span>
+                        <span class="tag">Communication</span>
+                        <span class="tag">Team Collaboration</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <h2>Work Experience & Leadership</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>Web Development Trainee / Student Developer</h3>
+                    <div class="company-role">STP Computer Education</div>
+                    <span class="duration">Aug 2024 – Aug 2025</span>
+                    <ul>
+                        <li>Completed an intensive 12-month Web Development program covering modern programming and software design principles.</li>
+                        <li>Developed responsive front-end layouts and functional web components utilizing core web technologies, achieving an A Grade.</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h3>Facilitator</h3>
+                    <div class="company-role">Google Cloud Arcade Facilitator Program</div>
+                    <span class="duration">Active</span>
+                    <ul>
+                        <li>Facilitated cloud learning paths and hands-on cloud/AI prototyping labs to build modern technical solutions.</li>
+                        <li>Leveraged AI-powered prototyping tools to design and test prototype applications efficiently.</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h3>Community Admin & Content Creator</h3>
+                    <div class="company-role">FAANGPath & Independent Creator</div>
+                    <span class="duration">Present</span>
+                    <ul>
+                        <li>Admin for the FAANGPath Discord community with over 6,000+ job seekers and industry mentors, facilitating online events and career conversations.</li>
+                        <li>Actively write blog and social media posts viewed by over 20K+ job seekers per week providing career best practices.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div>
+                        <h3>Hiring Search Tool</h3>
+                        <p>Built a tool to search for Hiring Managers and Recruiters by using ReactJS, NodeJS, Firebase, and boolean queries. Over 25,000 people have used it so far.</p>
+                    </div>
+                    <div class="tag-list">
+                        <span class="tag">ReactJS</span>
+                        <span class="tag">NodeJS</span>
+                        <span class="tag">Firebase</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div>
+                        <h3>Data Analytics Dashboard</h3>
+                        <p>Built a comprehensive data visualization dashboard utilizing Python and SQL to track financial metrics and inventory reports, streamlining reporting workflows.</p>
+                    </div>
+                    <div class="tag-list">
+                        <span class="tag">Python</span>
+                        <span class="tag">SQL</span>
+                        <span class="tag">Data Visualization</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education">
+            <h2>Education & Credentials</h2>
+            <div class="edu-card">
+                <h3>Bachelor of Computer Applications (BCA) - 5th Semester</h3>
+                <div class="edu-school">PTRS University • Expected 2027</div>
+                <p style="font-size: 0.9rem; color: var(--text-secondary);">Relevant Coursework: Object-Oriented Programming, Database Management Systems, Web Development, and Statistics.</p>
+            </div>
+            <div class="edu-card">
+                <h3>Diploma in Web Development (MSME & ISO Certified)</h3>
+                <div class="edu-school">STP Computer Education • Grade: A</div>
+            </div>
+        </section>
+
+        <section id="contact" style="border-bottom: none;">
+            <div class="contact-content">
+                <h2>Let's Work Together</h2>
+                <p>I am actively seeking full-time IT roles, internships, and software development opportunities. Reach out directly via email or connect on LinkedIn.</p>
+                <div class="cta-buttons" style="justify-content: center;">
+                    <a href="mailto:premkumarnageshwar@gmail.com" class="btn btn-primary">premkumarnageshwar@gmail.com</a>
+                    <a href="https://linkedin.com/in/prem-kumar-nageshwar-bab365303" target="_blank" class="btn btn-secondary">Connect on LinkedIn</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Prem Kumar Nageshwar. Designed with precision.</p>
+    </footer>
+
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const htmlElement = document.documentElement;
+        
+        themeToggle.addEventListener('click', () => {
+            if (htmlElement.classList.contains('dark')) {
+                htmlElement.classList.remove('dark');
+                htmlElement.classList.add('light');
+            } else {
+                htmlElement.classList.remove('light');
+                htmlElement.classList.add('dark');
+            }
+        });
+    </script>
+</body>
+</html>
